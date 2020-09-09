@@ -2,6 +2,7 @@
 // =============================================================
 var express = require("express");
 var path = require("path");
+var fs = require("fs");
 
 // Sets up the Express App
 // =============================================================
@@ -50,30 +51,11 @@ app.get("/api/notes", function(req, res) {
 // });
 
 // Create New Characters - takes in JSON input
-app.post("/api/note", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body parsing middleware
-  var newNote = req.body;
-  function writeFile(){
-    fs.writeFile(__dirname + '/../db/db.json', json, 'utf8',function(err) {
-
-     if (err){
-        return console.log(err);
-    }
-    console.log("appended file");
-});
-}
-writeFile()
-
-  // Using a RegEx Pattern to remove spaces from newCharacter
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  // newNote.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
-
-  console.log(newNote);
-
-  notes.push(newNote);
-
-  res.json(newNote);
+app.post("/api/notes", function(req, res) {
+    var newNotes = req.body;
+    console.log(newNotes);
+    notes.push(newNotes);
+    res.json(newNotes);
 });
 
 // Starts the server to begin listening
