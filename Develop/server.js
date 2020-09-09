@@ -26,7 +26,7 @@ app.get("/", function(req, res) {
 });
 
 app.get("/notes", function(req, res) {
-  res.sendFile(path.join(__dirname, "notes.html"));
+  res.sendFile(path.join(__dirname, "public/notes.html"));
 });
 
 // Displays all notes
@@ -50,7 +50,7 @@ app.get("/api/notes", function(req, res) {
 // });
 
 // Create New Characters - takes in JSON input
-app.post("/api/notes", function(req, res) {
+app.post("/api/note", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   var newNote = req.body;
