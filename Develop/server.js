@@ -35,27 +35,30 @@ app.get("/api/notes", function(req, res) {
   return res.json(notes);
 });
 
-// Displays a single character, or returns false
-// app.get("/api/characters/:character", function(req, res) {
-//   var chosen = req.params.character;
 
-//   console.log(chosen);
 
-//   for (var i = 0; i < characters.length; i++) {
-//     if (chosen === characters[i].routeName) {
-//       return res.json(characters[i]);
-//     }
-//   }
 
-//   return res.json(false);
-// });
-
-// Create New Characters - takes in JSON input
+// Create New notes - takes in JSON input
 app.post("/api/notes", function(req, res) {
     var newNotes = req.body;
     console.log(newNotes);
     notes.push(newNotes);
-    res.json(newNotes);
+    res.json.newNotes;
+    var json = JSON.stringify(notes);
+    
+    
+    function writefile() {
+        fs.writeFile(__dirname + '/db/db.json', json, 'utf8', function(err) {
+            if (err){
+                return console.log(err);
+            }
+            console.log("note added")
+        });
+        
+    }
+    writefile()
+    res.json(notes);
+  
 });
 
 // Starts the server to begin listening
