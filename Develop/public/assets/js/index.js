@@ -3,47 +3,6 @@ const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
 const $noteList = $(".list-container .list-group");
-const express = require("express");
-const PORT = 4000;
-
-// my code ----------------------------------------------
-const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
-
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "notes.html"));
-});
-
-app.get("/api/notes", function(req, res) {
-  return res.json($noteList);
-});
-
-
-
-// checking for notes with id's ---------------------------------------------------
-
-// app.get("/api/notes/:notes", function(req, res) {
-//   var chosen = req.params.$noteList;
-
-//   console.log(chosen);
-
-//   for (var i = 0; i < characters.length; i++) {
-//     if (chosen === characters[i].routeName) {
-//       return res.json(characters[i]);
-//     }
-//   }
-
-//   return res.json(false);
-// });
-
-
-
-// _______________________-------------------------------------______________---
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
@@ -190,8 +149,3 @@ $noteText.on("keyup", handleRenderSaveBtn);
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();
-
-
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
-});
